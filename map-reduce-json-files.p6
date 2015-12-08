@@ -44,6 +44,6 @@ for @results -> $result {
 	%hash.append(%$result);
 }
 
-for %hash.kv -> $key, $value {
+for %hash.sort(*.key)>>.kv -> ($key, $value) {
 	say "for $key total is: ", [+] $value;
 }
