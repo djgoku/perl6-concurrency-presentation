@@ -13,10 +13,18 @@ my %json =
 		'test1'=> 2,
 		'test2'=> 3,
 		'test3'=> 1,
-	}; 
+	};
+
+my @output;
 
 for %json.kv -> $key, $value {
 	"Outputting file $key".say;
-	my $json = to-json($value);
-	spurt $key, $json;
+	push @output, start {
+		my $json = to-json($value);
+		spurt $key, $json;
+	}
 }
+
+my $all-successful = Promise.allof(@output);
+await $all-successful;
+say $all-successful;
