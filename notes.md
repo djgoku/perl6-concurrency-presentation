@@ -1,3 +1,7 @@
+Channel
+* A Channel is a thread-safe queue that can have multiple readers and writers that could be considered to be similar in operation to a "fifo" or named pipe except it does not enable inter-process communication.
+
+
 Supplier
 * A Supply is an asynchronous data streaming mechanism that can be consumed by one or more consumers simultaneously in a manner similar to "events" in other programming languages and can be seen as enabling "Event Driven" or reactive designs.
 * example
