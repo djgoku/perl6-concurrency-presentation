@@ -16,7 +16,7 @@ for @files -> $file {
 
 	my %h;
 
-	for (1..100).pick((1..25).pick()) {
+	for (100..1000).pick((25..100).pick()) {
 		%h{"test$_"} = $_;
 	}
 
