@@ -1,27 +1,20 @@
 use v6;
 
-my %json = 
-	'file1.txt'=> {
-		'test1'=> 1,
-		'test2'=> 2,
-		'test3'=> 3,
-	}, 'file2.txt' => {
-		'test1'=> 3,
-		'test2'=> 2,
-		'test3'=> 1,
-	}, 'file3.txt' => {
-		'test1'=> 2,
-		'test2'=> 3,
-		'test3'=> 1,
-	};
-
 my @output;
 
-for %json.kv -> $key, $value {
-	"Outputting file $key".say;
+my @files = (1..100).pick((25).pick());
+say "files ", @files, ' with a size of ', @files.elems;
+
+for @files -> $file {
+	my $f = "file$file.txt";
+	"Outputting file $f".say;
+	my %h;
+	for (1..100).pick((1..25).pick()) {
+		%h{"test$_"} = $_;
+	}
 	push @output, start {
-		my $json = to-json($value);
-		spurt $key, $json;
+		my $json = to-json(%h);
+		spurt $f, $json;
 	}
 }
 
